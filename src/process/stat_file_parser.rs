@@ -11,7 +11,7 @@ pub fn parse_stat_file(
 ) -> ProcessInfo {
     let parts: Vec<&str> = content.split(" ").collect();
 
-    let pid = parts[0].parse::<u64>().unwrap();
+    let pid = parts[0].parse::<i32>().unwrap();
     let comm_name_with_parentheses = parts[1];
     let clean_comm_name = remove_parentheses_from_comm(comm_name_with_parentheses);
 

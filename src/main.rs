@@ -4,6 +4,8 @@ mod config;
 mod process;
 mod process_killer;
 
+use libc::{kill, SIGTERM};
+
 use crate::config::config_option::ConfigOption;
 use crate::config::config_reader::read_config_file;
 use crate::process::process_probe::get_all_running_processes;
@@ -21,4 +23,9 @@ fn main() {
     let processes_to_kill = process_killer::get_process_ids_to_kill(config, processes);
 
     println!("{processes_to_kill:#?}");
+    for p in processes_to_kill {
+        unsafe {
+            kill(p.pid, SIGTERM);
+        }
+    }
 }
