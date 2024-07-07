@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'limit-process-time-daemon'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=limit-process-time-daemon",
+                    "--package=limit-process-time-daemon"
+                ],
+                "filter": {
+                    "name": "limit-process-time-daemon",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'limit-process-time-daemon'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=limit-process-time-daemon",
+                    "--package=limit-process-time-daemon"
+                ],
+                "filter": {
+                    "name": "limit-process-time-daemon",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
