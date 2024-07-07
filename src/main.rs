@@ -2,6 +2,7 @@
 
 mod config;
 mod process;
+mod process_killer;
 
 use crate::config::config_option::ConfigOption;
 use crate::config::config_reader::read_config_file;
@@ -11,24 +12,13 @@ fn main() {
     let config = match read_config_file() {
         Ok(conf) => conf,
         _ => vec![ConfigOption {
-            allowed_life_duration_seconds: 3600,
+            allowed_life_duration_seconds: 1,
             process_name: "hoi4".to_owned(),
         }],
     };
 
     let processes = get_all_running_processes().expect("Failed to list running processes");
+    let processes_to_kill = process_killer::get_process_ids_to_kill(config, processes);
 
-    let interesting_processes: Vec<_> = processes
-        .iter()
-        .filter(|p| {
-            let search_result = config.binary_search_by(|o| o.process_name.cmp(&p.name));
-
-            match search_result {
-                Ok(_) => true,
-                _ => false,
-            }
-        })
-        .collect();
-
-    println!("{interesting_processes:#?}");
+    println!("{processes_to_kill:#?}");
 }

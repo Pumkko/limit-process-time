@@ -11,6 +11,7 @@ pub fn parse_stat_file(
 ) -> ProcessInfo {
     let parts: Vec<&str> = content.split(" ").collect();
 
+    let pid = parts[0].parse::<u64>().unwrap();
     let comm_name_with_parentheses = parts[1];
     let clean_comm_name = remove_parentheses_from_comm(comm_name_with_parentheses);
 
@@ -19,6 +20,7 @@ pub fn parse_stat_file(
     let running_for = seconds_since_boot - process_start_seconds_after_boot;
 
     ProcessInfo {
+        pid,
         name: clean_comm_name.to_owned(),
         been_running_for_seconds: running_for,
     }
