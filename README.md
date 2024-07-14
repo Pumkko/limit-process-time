@@ -8,7 +8,7 @@ but folders under /proc are not really folders so that did not work.
 
 I decided that detection would be too tricky and a simple Cronjob could do, run the code every 10 minutes if the game has been running for more than an hour at that time kill it.
 
+# Todo (game)
 
-# FOR THE FUTURE
-  - When the cronjob runs, check if HOI4 is running, if so add a new cronjob to kill so game time is exactly one hour
-- Actually write the code to read a config file to support more process that just HOI4, i made 80% of the code to do that I just need to write a parser for the config file (thinking about using the ini format)
+- [ ] When the cronjob runs, check if HOI4 is running, if so add a new task (either cron or something, have to look it up) to kill the process, so game time is exactly one hour
+- [X] Actually write the code to read a config file to support more process that just HOI4, i made 80% of the code to do that I just need to write a parser for the config file (thinking about using the ini format) **EDIT** : went for Json
