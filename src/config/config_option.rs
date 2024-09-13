@@ -33,16 +33,16 @@ impl Error for ConfigFileError {
 }
 
 impl From<serde_json::Error> for ConfigFileError {
-    fn from(e: serde_json::Error) -> Self {
+    fn from(_: serde_json::Error) -> Self {
         // I will do better later
-        println!("{e:#?}");
+        println!("Failed to read config file as json");
         ConfigFileError {}
     }
 }
 
 impl From<std::io::Error> for ConfigFileError {
-    fn from(e: std::io::Error) -> Self {
-        println!("{e:#?}");
+    fn from(_: std::io::Error) -> Self {
+        println!("Failed to find config file, falling back to default hoi value");
         ConfigFileError {}
     }
 }

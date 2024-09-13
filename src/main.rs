@@ -25,7 +25,7 @@ fn main() {
     let processes = get_all_running_processes().expect("Failed to list running processes");
     let processes_to_kill = process_killer::get_process_ids_to_kill(config.processes, processes);
 
-    println!("{processes_to_kill:#?}");
+    println!("Killing process: {processes_to_kill:#?}");
     for p in processes_to_kill {
         unsafe {
             kill(p.pid, SIGTERM);
